@@ -69,7 +69,6 @@ h2{font-size:clamp(2rem,5vw,3.2rem)}
 /* ============ 2 REGIONS ============ */
 .regions{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
 .rcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
-.rcard svg.scene{display:block;width:100%;aspect-ratio:5/3}
 .rhead{padding:.65rem 1rem;font:700 1.05rem var(--f-display);color:#fff}
 .rcard ul{list-style:none;margin:0;padding:1rem 1rem .4rem;display:grid;gap:.65rem;font-size:.97rem}
 .rcard li{display:flex;gap:.6rem;align-items:flex-start}
@@ -279,19 +278,19 @@ textarea:focus{outline:none;border-color:var(--amber)}
 <script>
 /* ============ DATA ============ */
 const REGIONS = [
-  { id:1, name:"Região 1 – Centro", pop:20, need:3, color:"#0d6aa8",
+  { id:1, label:"Região 1", name:"Região 1 – Centro", pop:20, need:3, color:"#0d6aa8",
     facts:["População: 20 mil moradores","Hospital de grande porte","Rede elétrica antiga","Uma queda pode afetar serviços essenciais"],
     more:"Concentra comércio, escritórios e o principal hospital da cidade. Equipamentos antigos aumentam o risco de falhas em cadeia.",
     revealTitle:"Maior renda e acesso a serviços",
     reveal:"Majoritariamente população de maior renda, com maior acesso a serviços públicos. Predominância de pessoas brancas.",
     out:[["Rede estável, com melhorias nos serviços essenciais.","Hospital protegido e serviços funcionando."],["Parte da rede foi renovada, mas ainda há pontos antigos.","Hospital com proteção parcial."],["Quase nada mudou: a rede antiga segue vulnerável.","O hospital continua exposto a quedas."],["Sem investimento, a rede antiga segue em risco.","Uma falha pode paralisar serviços essenciais."]] },
-  { id:2, name:"Região 2 – Periferia", pop:50, need:5, color:"#b8323a",
+  { id:2, label:"Região 2", name:"Região 2 – Periferia", pop:50, need:5, color:"#b8323a",
     facts:["População: 50 mil moradores","Muitas quedas de energia","Escolas e postos de saúde","Rede elétrica sobrecarregada"],
     more:"Bairros densos, de crescimento rápido. Transformadores operam acima da capacidade e as falhas atingem escolas e postos de saúde.",
     revealTitle:"Menor renda e maior precariedade",
     reveal:"População majoritariamente negra e parda, com menor renda e maior exposição à precariedade de infraestrutura.",
     out:[["Quedas reduzidas de forma significativa.","Mais pessoas atendidas, escolas e postos com energia estável."],["As quedas diminuíram, mas ainda são frequentes em alguns bairros.","Parte dos serviços segue sem atendimento adequado."],["Ainda há quedas frequentes e áreas sem atendimento adequado.","Escolas e postos continuam sofrendo interrupções."],["A rede sobrecarregada continua como estava.","Quedas seguem frequentes para a maior parte dos moradores."]] },
-  { id:3, name:"Região 3 – Rural/Indígena", pop:5, need:4, color:"#247a46",
+  { id:3, label:"Região 3", name:"Região 3 – Rural/Indígena", pop:5, need:4, color:"#247a46",
     facts:["População: 5 mil moradores","Comunidade distante","Construir a rede até lá é muito caro","Parte das famílias depende de geradores"],
     more:"Acesso por estradas difíceis e longe da rede principal. Geradores são caros, barulhentos e poluentes.",
     revealTitle:"Territórios historicamente negligenciados",
@@ -315,7 +314,7 @@ const bolt = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
 /* ============ STEP 2: REGION CARDS ============ */
 $('#regions').innerHTML = REGIONS.map(r => `
   <article class="rcard" data-r="${r.id}">
-    <h3 class="rhead">${r.name}</h3>
+    <h3 class="rhead">${r.label}</h3>
     <ul>${r.facts.map(f=>`<li>${f}</li>`).join('')}</ul>
     <details><summary>Ver mais</summary><p>${r.more}</p></details>
   </article>`).join('');
@@ -324,9 +323,9 @@ $('#regions').innerHTML = REGIONS.map(r => `
 $('#alloc').innerHTML = REGIONS.map(r => `
   <div class="row" data-r="${r.id}">
     <div class="ctrl">
-      <h3>${r.name}</h3>
-      <input type="range" min="0" max="${TOTAL}" step="0.5" value="0" id="rg${r.id}" aria-label="Investimento na ${r.name}, em milhões de reais">
-      <label class="num"><small>R$</small><input type="number" min="0" max="${TOTAL}" step="0.5" value="0" id="nm${r.id}" aria-label="Valor em milhões para ${r.name}"><small>milhões</small></label>
+      <h3>${r.label}</h3>
+      <input type="range" min="0" max="${TOTAL}" step="0.5" value="0" id="rg${r.id}" aria-label="Investimento na ${r.label}, em milhões de reais">
+      <label class="num"><small>R$</small><input type="number" min="0" max="${TOTAL}" step="0.5" value="0" id="nm${r.id}" aria-label="Valor em milhões para ${r.label}"><small>milhões</small></label>
     </div>
   </div>`).join('');
 
