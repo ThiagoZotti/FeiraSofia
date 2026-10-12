@@ -151,11 +151,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .concept .tie{margin-top:1.4rem;color:var(--muted);max-width:60ch}
 
 /* ============ 7 FINAL ============ */
-.final h2{max-width:18ch}
+.final h2{max-width:30ch}
 .say{margin-top:2rem;max-width:62ch;padding:1.4rem 1.6rem;border-radius:var(--radius);background:var(--panel);border:1px solid var(--line)}
 .say p+p{margin-top:.8rem;color:var(--muted)}
-textarea{width:100%;min-height:130px;margin-top:1.5rem;border-radius:var(--radius);background:var(--night);border:1px solid var(--line);padding:1rem 1.1rem;resize:vertical}
-textarea:focus{outline:none;border-color:var(--amber)}
+.criteria{margin:1.4rem 0 0;padding-left:1.2rem;display:grid;gap:1rem;color:var(--muted)}
+.criteria strong{color:var(--text)}
+.criteria li::marker{color:var(--amber)}
 .close{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line)}
 .close .hand{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.3;transform:rotate(-2deg)}
 
@@ -263,13 +264,18 @@ textarea:focus{outline:none;border-color:var(--amber)}
 
 <!-- 7 -->
 <section class="step final" data-step="7" aria-labelledby="h7">
-  <h2 id="h7">E agora? O que você faria diferente?</h2>
+  <h2 id="h7">Quais critérios de justiça ambiental devem orientar essa decisão?</h2>
   <div class="say">
-    <p><strong>Se você pudesse voltar ao início, mudaria sua decisão?</strong></p>
-    <p>Agora que você conhece as desigualdades históricas de cada região, o que deveria ser considerado além do custo e do número de pessoas? O acesso a serviços essenciais? A justiça histórica?</p>
+    <p>O princípio central é a <strong>equidade</strong>, que significa distribuir os recursos de acordo com as necessidades de cada região, e não necessariamente dar a mesma quantia para todas.</p>
+    <ul class="criteria">
+      <li><strong>Gravidade do problema:</strong> regiões com apagões frequentes ou sem acesso à eletricidade podem precisar de investimentos mais urgentes.</li>
+      <li><strong>Vulnerabilidade social:</strong> comunidades de baixa renda podem ter menos recursos para lidar com os prejuízos causados pela falta de energia.</li>
+      <li><strong>Quantidade de pessoas afetadas:</strong> é importante avaliar quantas famílias serão beneficiadas por cada investimento.</li>
+      <li><strong>Histórico de negligência:</strong> regiões que historicamente receberam menos infraestrutura devem ser consideradas na definição das prioridades.</li>
+      <li><strong>Resultados esperados:</strong> os investimentos precisam melhorar efetivamente o acesso e a qualidade do fornecimento.</li>
+    </ul>
   </div>
-  <label for="op" class="lead" style="display:block">Participe: escreva sua opinião ou discuta com o grupo.</label>
-  <textarea id="op" placeholder="Digite sua opinião…"></textarea>
+  <p class="lead">Ao olhar para sua escolha, reflita: como esses critérios poderiam mudar as prioridades de investimento?</p>
   <div class="actions"><button class="btn ghost" id="again">Refazer a simulação</button></div>
   <div class="close"><p class="hand">Energia é um direito.<br>E também uma questão de justiça.</p></div>
 </section>
@@ -413,7 +419,7 @@ document.addEventListener('click', e => {
 });
 $('#again').addEventListener('click', () => {
   [1,2,3].forEach(i => { alloc[i] = 0; $('#rg'+i).value = 0; $('#nm'+i).value = 0; });
-  $('#op').value = ''; update(); go(1);
+  update(); go(1);
 });
 update(); go(1);
 </script>
